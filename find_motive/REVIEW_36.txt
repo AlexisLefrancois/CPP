@@ -1,0 +1,25 @@
+- Tests: 
+./main myLargeText.txt "c++IsAwesome” : OK
+
+Respect des arguments : OK
+
+1 seul argument : OK
+
+------------------
+- find_motive.cpp
+
+bon choix de comparer le length du motive au texte complet
+
+La fonction voidpreTraitment n’est pas utilisé après son appel, le programme fonctionne toujours correctement sans la fonction.
+-----------------
+
+- main.cpp
+
+Ok 
+-----------------
+- find_motive.h
+Concernant le header, le “Guard” utilisé est celui pour le C, il aurait été plus juste d’utiliser celui vu en cours pour le C++ :
+#pragma once
+Il manque également la définition de la fonction “void preTraitment(string motive, int f[])”
+----------------
+Bon dans l'ensemble !

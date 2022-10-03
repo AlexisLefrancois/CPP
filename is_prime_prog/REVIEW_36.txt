@@ -1,0 +1,32 @@
+- Tests :
+
+cmake .. : OK
+
+make : OK
+
+echo "1 13 10" | ./main : OK
+
+cat myPrimes.txt | ./main : OK
+
+
+- is_prime.cpp :
+
+Bon choix d’optimisation avec le number % 2 et number % 3 → false 
+
+
+- main.cpp :
+
+Bonne maitrîse du ternaire
+
+
+- is_prime.h :
+
+Concernant le header, le “Guard” utilisé est celui pour le C, il aurait été plus juste d’utiliser celui vu en cours pour le C++ :
+#pragma once
+
+
+- Dans le CMakeLists.txt :
+
+Il aurait fallu bien nommer le nom du projet qui est ici project(is_prime_prog) et non project(MyFirstProg)
+----------
+Bon dans l’ensemble !
