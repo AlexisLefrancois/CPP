@@ -1,15 +1,17 @@
 #include "sources.h"
 
-bool is_prime(int i)
+bool is_prime(long long n)
 {
-    if (i == 1)
-    {
+    if (n == 1)
+        return false;
+    if (n == 2) {
+        return true;
+    }
+    if (n % 2 == 0) {
         return false;
     }
-    for (int j = 2; j < i; j++)
-    {
-        if (i % j == 0)
-        {
+    for (long long i = 3; i * i <= n; i += 2) {
+        if (n % i == 0) {
             return false;
         }
     }
