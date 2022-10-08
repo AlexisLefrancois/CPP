@@ -1,8 +1,8 @@
 #include "sources.h"
 
-bool is_prime(long long n)
+bool is_prime(long long int n)
 {
-    if (n == 1)
+    if (n < 2)
         return false;
     if (n == 2) {
         return true;
@@ -10,7 +10,7 @@ bool is_prime(long long n)
     if (n % 2 == 0) {
         return false;
     }
-    for (long long i = 3; i * i <= n; i += 2) {
+    for (long long int i = 3; i * i <= n; i += 2) {
         if (n % i == 0) {
             return false;
         }

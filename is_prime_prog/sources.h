@@ -1,4 +1,4 @@
 #pragma once
 
-extern long long i;
-bool is_prime(long long i);
+extern long long int i;
+bool is_prime(long long int i);

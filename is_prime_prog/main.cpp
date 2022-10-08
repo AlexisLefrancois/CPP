@@ -3,19 +3,10 @@
 
 int main()
 {
-    long long i;
+    long long int i;
     while (std::cin >> i)
     {
-        if (is_prime(i))
-        {
-            std::cout << i << " is a prime: True" << std::endl;
-            return 1;
-        }
-        else
-        {
-            std::cout << i << " is a prime: False" << std::endl;
-            return 1;
-        }
+        std::cout << i << " is a prime: " << (is_prime(i) ? "True" : "False") << std::endl;
     }
     return 0;
 }
