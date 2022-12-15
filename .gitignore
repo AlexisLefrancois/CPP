@@ -37,3 +37,6 @@
 
 # Idea related files
 .idea
+
+# Vs code related files
+.vscode

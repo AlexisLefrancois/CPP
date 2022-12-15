@@ -11,69 +11,82 @@
    • s1 ^ s2 to return a new set containing the symmetric difference of s1 and s2 (xor of s1 and s2)
    • s1 * s2 to return a new set {x1+x2 | forall x1 in s1 and x2 in s2}
    • s1 ^ n to return a new set containing the original set multiplied with itself n times
-   */
+*/
 
-template <class T>
-concept Admissible = std::is_integral_v<T> || std::is_floating_point_v<T> || std::is_same_v<T, std::string>;
-
-template <Admissible T>
-std::set<T> operator+(const std::set<T>& s1, const std::set<T>& s2)
+std::set<int> operator+(const std::set<int>& s1,const std::set<int>& s2)
 {
-    std::set<T> result;
-    for (const auto& e : s1)
-        result.insert(e);
-    for (const auto& e : s2)
-        result.insert(e);
+    std::set<int> result;
+    for (auto& x : s1)
+        result.insert(x);
+    for (auto& x : s2)
+        result.insert(x);
     return result;
 }
 
-template <Admissible T>
-std::set<T> operator-(const std::set<T>& s1, const std::set<T>& s2)
+std::set<int> operator-(const std::set<int>& s1,const std::set<int>& s2)
 {
-    std::set<T> result;
-    for (const auto& e : s1)
-        if (s2.find(e) == s2.end())
-            result.insert(e);
+    std::set<int> result;
+    for (auto& x : s1)
+        result.insert(x);
+    for (auto& x : s2)
+        result.erase(x);
     return result;
 }
 
-template <Admissible T>
-std::set<T> operator^(const std::set<T>& s1, const std::set<T>& s2)
+std::set<int> operator^(const std::set<int>& s1,const std::set<int>& s2)
 {
-    std::set<T> result;
-    for (const auto& e : s1)
-        if (s2.find(e) == s2.end())
-            result.insert(e);
-    for (const auto& e : s2)
-        if (s1.find(e) == s1.end())
-            result.insert(e);
-    return result;
-}
-
-template<Admissible T>
-std::set<T> operator*(const std::set<T>& s1, const std::set<T>& s2)
-{
-    std::set<T> result;
-    for (const auto& e1 : s1)
-        for (const auto& e2 : s2)
-            result.insert(e1 + e2);
-    return result;
-}
-
-template <Admissible T>
-std::set<T> operator^(const std::set<T>& s, const int n)
-{
-    std::set<T> result;
-    if (n == 0)
-        result.insert(T{});
-    else if (n == 1)
-        result = s;
-    else
-    {
-        result = s;
-        for (int i = 1; i < n; ++i)
-            result = result * s;
+    std::set<int> result;
+    for (auto& x : s1)
+        result.insert(x);
+    for (auto& x : s2) {
+        if (result.find(x) != result.end())
+            result.erase(x);
+        else
+            result.insert(x);
     }
     return result;
 }
 
+std::set<int> operator*(const std::set<int>& s1,const std::set<int>& s2)
+{
+    std::set<int> result;
+    for (auto& x : s1)
+    {
+        for (auto& y : s2)
+            result.insert(x+y);
+    }
+    return result;
+}
+
+std::set<int> operator^(const std::set<int>& s1,const int n)
+{
+    std::set<int> result = s1;
+
+    for (int i = 0; i < n; ++i)
+        result = result * s1;
+
+    return result;
+}
+
+std::set<std::string> operator*(const std::set<std::string>& s1,const std::set<std::string>& s2)
+{
+    std::set<std::string> result;
+    for (auto& x : s1)
+    {
+        for (auto& y : s2)
+            result.insert(x+y);
+    }
+    return result;
+}
+
+std::set<std::string> operator^(const std::set<std::string>& s1,const int n)
+{
+    if (n < 0)
+        throw std::invalid_argument("n must be positive");
+    if (n == 0)
+        return std::set<std::string>();
+    std::set<std::string> result = s1;
+    for (int i = 0; i < n; ++i)
+        result = result * s1;
+    return result;
+}

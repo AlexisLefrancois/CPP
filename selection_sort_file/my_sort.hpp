@@ -1,25 +1,20 @@
 // Selection sort implementation :
 
-void swap(int& a, int& b)
+template <typename T, class Compare>
+void my_sort(T begin, T end, Compare c)
 {
-    int temp = a;
-    a = b;
-    b = temp;
-}
-
-template <typename T>
-void my_selection_sort(T begin, T end)
-{
-    for (T i = begin; i != end; ++i)
+    for (auto j = begin; j != end; ++j)
     {
-        T min = i;
-        for (T j = i; j != end; ++j)
+        auto min = j;
+        for (auto i = j; i != end; ++i)
         {
-            if (*j < *min)
+            if (c(*i, *min))
             {
-                min = j;
+                min = i;
             }
         }
-        swap(*i, *min);
+        auto temp = *j;
+        *j = *min;
+        *min = temp;
     }
 }
